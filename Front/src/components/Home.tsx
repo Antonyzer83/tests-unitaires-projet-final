@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { endpoint, Product } from "../App";
+import React from "react";
+import useHome from "../hooks/useHome";
 
 const Home = ({ setRoute }: { setRoute: (data: any) => void }) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    fetch(`${endpoint}/products`)
-      .then((res) => res.json())
-      .then((res) => {
-        setLoading(false);
-        setProducts(res);
-      });
-  }, []);
+  const { loading, products } = useHome();
 
   return (
     <div>

@@ -1,39 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { endpoint, Product } from "../App";
+import React from "react";
+import useCart from "../hooks/useCart";
 
 const Cart = ({ setRoute }: { setRoute: (data: any) => void }) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [message, setMessage] = useState<string | null>(null);
-
-  const loadCart = () => {
-    fetch(`${endpoint}/cart`)
-      .then((res) => res.json())
-      .then((res) => {
-        setLoading(false);
-        setProducts(res.products);
-      });
-  };
-
-  useEffect(() => {
-    loadCart();
-  }, []);
-
-  const removeToCart = (product: Product) => {
-    setLoading(true);
-    fetch(`${endpoint}/cart/${product.id}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        setMessage("Produit bien supprimé");
-        loadCart();
-      });
-  };
+  const { loading, products, message, loadCart, removeToCart } = useCart();
+  
   return (
     <div>
       {loading && <div>Loading....</div>}
