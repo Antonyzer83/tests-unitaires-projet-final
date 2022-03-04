@@ -15,7 +15,7 @@ class Cart
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToMany(targetEntity: Product::class)]
+    #[ORM\ManyToMany(targetEntity: Product::class, cascade: ['persist'])]
     private $products;
 
     public function __construct()
