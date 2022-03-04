@@ -9,8 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     #[Route('/', name: 'homepage')]
-    public function index(): Response
+    public function index()
     {
-        return $this->json(['message' => "Hello"]);
+        return json_encode(['message' => "Hello"]);
     }
 }
