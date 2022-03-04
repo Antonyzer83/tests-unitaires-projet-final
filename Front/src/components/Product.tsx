@@ -6,13 +6,13 @@ const Product = ({ setRoute, data: product }: any) => {
   return (
     <div>
       {loading && <div>Loading....</div>}
-      {message && <p>{message}</p>}
-      <div onClick={() => setRoute({ route: "home" })}>Retour</div>
+      {message && <p className="product-message">{message}</p>}
+      <div className="back-btn" onClick={() => setRoute({ route: "home" })}>Retour</div>
       <div>
         <div>
-          <img src={product.image} alt="" />
-          <p>Figurine de {product.name}</p>
-          <p>Quantitée {product.quantity}</p>
+          <img className="product-img" src={product.image} alt="" />
+          <p>Figurine de <span className="product-name">{product.name}</span></p>
+          <p>Quantitée <span className="product-quantity">{product.quantity}</span></p>
         </div>
       </div>
       <hr />
@@ -22,7 +22,7 @@ const Product = ({ setRoute, data: product }: any) => {
         onChange={(e) => setQuantity(Number(e.target.value))}
         placeholder="Quantité à ajouter"
       />
-      <button onClick={addProduct}>Ajouter au panier</button>
+      <button className="submit-btn" onClick={addProduct}>Ajouter au panier</button>
     </div>
   );
 };

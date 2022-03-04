@@ -3,6 +3,8 @@ import { act } from "react-dom/test-utils";
 import useHome from '../../hooks/useHome';
 import { setupServer } from "msw/node";
 import { rest } from "msw";
+import { render } from "@testing-library/react";
+import Home from '../../components/Home';
 
 const server = setupServer(
   rest.get(
@@ -27,6 +29,10 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+/**
+ * HOOKS
+ */
+
 test('loadProducts', async () => {
   const { result } = renderHook(() => useHome());
   const { loadProducts } = result.current;
@@ -46,4 +52,23 @@ test('loadProducts', async () => {
     }
   ]);
   expect(loading).toEqual(false);
-})
+});
+
+/**
+ * COMPONENTS
+ */
+
+let container: any;
+
+beforeEach(() => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+test('loadProductsComponent', () => {
+  const { container } = render(<Home setRoute={() => { }} />);
+  expect(container.querySelector('.cart-btn')?.innerHTML).toBe('Aller sur panier');
+  // expect(container.querySelector('.product-name')?.innerHTML).toBe('Rick Sanchez');
+  // expect(container.querySelector('.product-quantity')?.innerHTML).toBe('2');
+  // expect(container.querySelector('.product-img')?.getAttribute('src')).toBe('https://rickandmortyapi.com/api/character/avatar/1.jpeg');
+});
