@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { act } from "react-dom/test-utils";
-import useCart from '../../hooks/useCart';
+import useCart from '../hooks/useCart';
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 

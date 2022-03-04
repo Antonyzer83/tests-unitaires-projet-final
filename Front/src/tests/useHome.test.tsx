@@ -1,10 +1,10 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { act } from "react-dom/test-utils";
-import useHome from '../../hooks/useHome';
+import useHome from '../hooks/useHome';
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { render } from "@testing-library/react";
-import Home from '../../components/Home';
+import Home from '../components/Home';
 
 const server = setupServer(
   rest.get(

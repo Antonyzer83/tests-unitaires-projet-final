@@ -1,10 +1,10 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { act } from "react-dom/test-utils";
-import useProduct from '../../hooks/useProduct';
+import useProduct from '../hooks/useProduct';
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { fireEvent, getByTestId, render } from "@testing-library/react";
-import Product from '../../components/Product';
+import Product from '../components/Product';
 
 let error = false;
 
