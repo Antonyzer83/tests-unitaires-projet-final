@@ -20,7 +20,7 @@ jobs:
       - name: Use PHP
         uses: shivammathur/setup-php@1.7.0
         with:
-          php-version: "7.4"
+          php-version: "8"
           coverage: xdebug
           ini-values: xdebug.overload_var_dump=1
           extensions: mbstring, intl
