@@ -12,7 +12,7 @@ const Home = ({ setRoute }: { setRoute: (data: any) => void }) => {
         {products.map((product) => {
           return (
             <React.Fragment>
-              <div
+              <div className="product-div"
                 onClick={() => setRoute({ route: "product", data: product })}
               >
                 <img className="product-img" src={product.image} alt="" />

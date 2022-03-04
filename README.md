@@ -22,14 +22,23 @@ npm start
 # Run Backend tests
 
 ```bash
+# Prerequires
 cd Back
 docker exec -it php-app bash
+
+# First option
+php bin/phpunit
+# Second option
+XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html=out/
 ```
 
 # Run Frontend tests
 
 ```bash
+# Prerequires
 cd Front
+# First option
 npm test
+# Second option
 npm test -- --coverage
 ```
