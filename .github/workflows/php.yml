@@ -12,22 +12,20 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: docker:18
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-      - name: Use PHP
-        uses: shivammathur/setup-php@1.7.0
-        with:
-          php-version: "8"
-          coverage: xdebug
-          ini-values: xdebug.overload_var_dump=1
-          extensions: mbstring, intl
-          tools: prestissimo
 
-      - name: Install dependencies
-        run: cd Back && composer install
+      - name: Start containers
+        run: docker-compose up -d
 
-      - name: Run test
-        run: cd Back && php bin/phpunit
+      - name: Drop, create and migrate tables
+        run: |
+          docker-compose exec -T app composer install
+          docker-compose exec -T app php bin/console doctrine:database:drop --force --env=test || true
+          docker-compose exec -T app php bin/console doctrine:database:create --env=test
+          docker-compose exec -T app php bin/console doctrine:migrations:migrate -n --env=test
+          docker-compose exec -T app php bin/console doctrine:fixtures:load -n --env=test
+          docker-compose exec -T app php bin/phpunit
