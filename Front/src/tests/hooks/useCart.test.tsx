@@ -19,7 +19,15 @@ const server = setupServer(
       return res(
         ctx.json({
           id: 1,
-          products: []
+          products: [
+            {
+              id: 1,
+              name: "Rick Sanchez",
+              price: "9,99",
+              quantity: 2,
+              image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+            }
+          ]
         })
       );
     }
@@ -52,9 +60,15 @@ test('loadCart', async () => {
   });
   
   const { products } = result.current;
-  expect(products).toEqual(
-    expect.arrayContaining([])
-  );
+  expect(products).toEqual([
+    {
+      id: 1,
+      name: "Rick Sanchez",
+      price: "9,99",
+      quantity: 2,
+      image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+    }
+  ]);
 });
 
 test('removeToCart', async () => {
