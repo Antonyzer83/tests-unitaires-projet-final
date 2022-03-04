@@ -3,7 +3,7 @@ import { act } from "react-dom/test-utils";
 import useProduct from '../hooks/useProduct';
 import { setupServer } from "msw/node";
 import { rest } from "msw";
-import { fireEvent, getByTestId, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import Product from '../components/Product';
 
 let error = false;

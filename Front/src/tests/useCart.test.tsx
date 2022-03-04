@@ -3,6 +3,8 @@ import { act } from "react-dom/test-utils";
 import useCart from '../hooks/useCart';
 import { setupServer } from "msw/node";
 import { rest } from "msw";
+import { fireEvent, render } from "@testing-library/react";
+import Cart from '../components/Cart';
 
 const newProduct = {
   id: 1,
@@ -49,6 +51,10 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+/**
+ * HOOKS
+ */
+
 test('loadCart', async () => {
   const { result } = renderHook(() => useCart());
   const { loadCart, loading } = result.current;
@@ -83,4 +89,20 @@ test('removeToCart', async () => {
 
   const { message } = result.current;
   expect(message).toEqual('Produit bien supprimé');
+});
+
+/**
+ * COMPONENTS
+ */
+
+let container: any;
+
+beforeEach(() => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+test('loadComponent', () => {
+  const { container } = render(<Cart setRoute={() => { }} />);
+  expect(container.querySelector('.back-btn')?.innerHTML).toBe('Retour');
 });

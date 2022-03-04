@@ -8,7 +8,7 @@ const Cart = ({ setRoute }: { setRoute: (data: any) => void }) => {
     <div>
       {loading && <div>Loading....</div>}
       {message && <p>{message}</p>}
-      <div onClick={() => setRoute({ route: "home" })}>Retour</div>
+      <div className="back-btn" onClick={() => setRoute({ route: "home" })}>Retour</div>
       <div>
         {products.map((product) => {
           return (
