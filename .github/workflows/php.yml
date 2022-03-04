@@ -4,7 +4,7 @@ name: PHP CI
 on:
   # Triggers the workflow on push or pull request events but only for the testUnitJS branch
   push:
-    branches: [testUnitJS]
+    branches: [main]
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -30,4 +30,4 @@ jobs:
         run: cd Back && composer install
 
       - name: Run test
-        run: php bin/phpunit
+        run: cd Back && php bin/phpunit
