@@ -19,10 +19,11 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Start containers
-        run: docker-compose up -d
+        run: cd Back && docker-compose up -d
 
       - name: Drop, create and migrate tables
         run: |
+          cd Back
           docker-compose exec -T app composer install
           docker-compose exec -T app php bin/console doctrine:database:drop --force --env=test || true
           docker-compose exec -T app php bin/console doctrine:database:create --env=test
