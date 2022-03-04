@@ -43,6 +43,8 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-jest": "^26.1.1"
+    "@testing-library/react-hooks": "^7.0.2",
+    "eslint-plugin-jest": "^26.1.1",
+    "jest-watch-typeahead": "^0.6.5"
   }
 }
